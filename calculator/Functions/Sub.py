@@ -1,3 +1,3 @@
-def Sub(a,b):
+def sub(a,b):
     x=(a-b)
     return x

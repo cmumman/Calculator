@@ -2,9 +2,9 @@
 
 #enter two inputs
 
-from calculator.Functions.Add import add
+from calculator.Functions import *
 
-import calculator.Functions.Sub as f1
+#import calculator.Functions.Sub as f1
 
 def main():
 
@@ -14,9 +14,9 @@ def main():
 
  #input3 = raw_input("enter ADDI/SUB/MUX/DIVI:")
 
- output1 = add(input1,input2)
+ output1 = Add.add(input1,input2)
 
- output2 = f1.Sub(input1,input2)
+ output2 = Sub.sub(input1,input2)
 
  var1 = "sum of"
  var2 = "and"
