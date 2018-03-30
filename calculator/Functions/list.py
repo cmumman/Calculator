@@ -47,15 +47,16 @@ milk_carton = {"expiration_date":milk_exipiration , "fl_oz": 1, "cost": 2 ,"bran
 
 print milk_carton["expiration_date"]
 
-cost = 6*milk_carton["cost"]
+#cost = 6*milk_carton["cost"]
 
-print  ("six cartopn of milk cost is %d" %cost)
+print  ("six cartopn of milk cost is %d" %(6*milk_carton["cost"]))
 cheese = ["cotton","light","freeze"]
 dairy_section.append(cheese)
+print dairy_section
+dairy_section.pop(1)
 print dairy_section
 dairy_section.remove(cheese)
 print dairy_section
 dairy_section.extend(cheese)
 print dairy_section
-dairy_section.remove(cheese)
-print dairy_section
+print len(dairy_section)
