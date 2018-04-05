@@ -1,8 +1,0 @@
-test =  input("enter number : \n ")
-
-if (test < 10 ):
-    if (test >= 0):
-         print ("number is between 0 and 9 inclusive")
-else:
-    print ("number not in range")
-
