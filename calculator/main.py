@@ -2,9 +2,8 @@
 
 #enter two inputs
 
-from calculator.Functions import *
-
 #import calculator.Functions.Sub as f1
+from calculator.Functions import *
 
 def main():
 

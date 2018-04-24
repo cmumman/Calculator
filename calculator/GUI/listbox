@@ -1,0 +1,70 @@
+import Tkinter as tk
+import ttk
+from Tkinter import *
+
+
+root = tk.Tk()
+root.tk.call('tk', 'windowingsystem')
+cty_code = ('au','in','us')
+cty_name = ("Australia","India","USA")
+
+cnames = StringVar(value=cty_name)
+population = {"au":1000 , "in":2000 , "us":3000}
+gift_card = {'card':"card","flowers":"flowers","nastygram":"nastygram"}
+
+gift = StringVar()
+sent_msg = StringVar()
+status_msg = StringVar()
+
+def showPopulation(*args):
+    idxs = lbox.curselection()
+    if len(idxs) == 1:
+        idx = int(idxs[0])
+        code = cty_code[idx]
+        name =  cty_name(idx)
+        popn = population(idx)
+        status_msg.set(name,code,popn)
+        sent_msg.set('')
+
+def sendGift(*args):
+    idxs = lbox.curselection()
+    if len(idxs)==1:
+        idx = int(idxs[0])
+        lbox.see(idx)
+        name = cty_name[idx]
+        sent_msg.set("Sent %s to leader of %s" % (gift_card[gift.get()], name))
+
+c = ttk.Frame(root, padding=(5, 5, 12, 0))
+c.grid(column=0, row=0, sticky=(N,W,E,S))
+root.grid_columnconfigure(0, weight=1)
+root.grid_rowconfigure(0,weight=1)
+
+lbox = Listbox(c, listvariable=cnames, height=3)
+lbl = ttk.Label(c, text="Send to country's leader:")
+g1 = ttk.Radiobutton(c, text=gift_card['card'], variable=gift, value='card')
+g2 = ttk.Radiobutton(c, text=gift_card['flowers'], variable=gift, value='flowers')
+g3 = ttk.Radiobutton(c, text=gift_card['nastygram'], variable=gift, value='nastygram')
+send = ttk.Button(c, text='Send Gift', command=sendGift, default='active')
+sentlbl = ttk.Label(c, textvariable=sent_msg, anchor='center')
+status = ttk.Label(c, textvariable=status_msg, anchor=W)
+
+lbox.grid(column=0, row=0, rowspan=3, sticky=(N,S,E,W))
+lbl.grid(column=1, row=0, padx=10, pady=5)
+g1.grid(column=1, row=1, sticky=W, padx=20)
+g2.grid(column=1, row=2, sticky=W, padx=20)
+g3.grid(column=1, row=3, sticky=W, padx=20)
+send.grid(column=2, row=4, sticky=E)
+sentlbl.grid(column=1, row=5, columnspan=2, sticky=N, pady=5, padx=5)
+status.grid(column=0, row=6, columnspan=2, sticky=(W,E))
+c.grid_columnconfigure(0, weight=1)
+c.grid_rowconfigure(5, weight=1)
+
+lbox.bind('<<ListboxSelect>>', showPopulation)
+lbox.bind('<Double-1>', sendGift)
+root.bind('<Return>', sendGift)
+
+# Colorize alternating lines of the listbox
+for i in range(0,len(cty_name),2):
+    lbox.itemconfigure(i, background='#f0f0ff')
+
+root.mainloop()
